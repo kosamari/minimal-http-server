@@ -1,7 +1,6 @@
 // server.js
 // This is a minimal HTTP server written in Node's native http module
 
-
 // this is Node.js native modules
 const http = require('http') // handles http connection
 const url = require('url')   // used to parse url strings
