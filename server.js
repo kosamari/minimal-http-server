@@ -21,14 +21,14 @@ http.createServer(function (req, res) {
   // res : has lots of methods to respond to the client request
   
   // Find out which URL(static file) client requested & find the file extention for it
-  //   If user requests https://gray-spark.glitch.me/ then pathname is '/'
-  //   If user requests https://gray-spark.glitch.me/aboutme/ then pathnme is '/aboutme/'
-  //   If user requests https://gray-spark.glitch.me/style.css then pathnme is '/style.css'
+  //   If user requests https://website.com/ then pathname is '/'
+  //   If user requests https://website.com/aboutme/ then pathnme is '/aboutme/'
+  //   If user requests https://website.com/style.css then pathnme is '/style.css'
   let pathname = url.parse(req.url).pathname
   let extention = path.extname(pathname)
 
   // If request is NOT for root directory & pathname end with '/' redirect to non trailing / url
-  //   ex : https://gray-spark.glitch.me/aboutme/ will redirect to https://gray-spark.glitch.me/aboutme <= no / at the end
+  //   ex : https://website.com/aboutme/ will redirect to https://website.com/aboutme <= no / at the end
   if (pathname !== '/' && pathname[pathname.length - 1] === '/') {
     res.writeHead(302, {'Location': pathname.slice(0, -1)})
     res.end()
