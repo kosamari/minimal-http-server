@@ -21,9 +21,9 @@ http.createServer(function (req, res) {
   // res : has lots of methods to respond to the client request
   
   // Find out which URL(static file) client requested & find the file extention for it
-  //   If user requests https://website.com/ then pathname is '/'
-  //   If user requests https://website.com/aboutme/ then pathnme is '/aboutme/'
-  //   If user requests https://website.com/style.css then pathnme is '/style.css'
+  //   If user requests https://website.com/ then pathname is '/', extention is empty
+  //   If user requests https://website.com/aboutme/ then pathname is '/aboutme/', extention is empty
+  //   If user requests https://website.com/style.css then pathname is '/style.css', extention is '.css'
   let pathname = url.parse(req.url).pathname
   let extention = path.extname(pathname)
 
@@ -39,16 +39,16 @@ http.createServer(function (req, res) {
   // Else if file extention is empty, that means user accessed '/aboutme' instead of '/aboutme.html' 
   // so add file extention to the pathname
   if (pathname === '/') { 
-    pathname = 'index.html'
+    pathname = '/index.html'
   } else if (!extention) { 
     extention = '.html' 
     pathname += extention
   }
 
-  // path.join glues bunch of words into a valid file path on the computer(server)
+  // path.join glues bunch of words into a valid file path on the computer (server)
   const filepath = path.join(process.cwd(), '/public', pathname) 
   
-  // OK, now we know which file user is requesting (pathname) & where the file should live in the computer (filepath)
+  // OK, now we know which file user is requesting (pathname) & where the file should live on the computer (filepath)
   // Let's check if the file exist on the computer
   fs.exists(filepath, function (exists, err) {
     
@@ -61,7 +61,7 @@ http.createServer(function (req, res) {
       return
     }
 
-    // Set Content-Type header to the response
+    // Set status code & content-type header to the response
     res.writeHead(200, {'Content-Type': mimetype[extention]})
 
     // Read file from the computer and stream it to the response
