@@ -8,6 +8,8 @@ const path = require('path') // used to inspect & create filepath
 const fs = require('fs')     // reads file from local folder
 
 // This is a dictionaly I made to look up mimetype for each file extentions
+// I made this to serve html/css/js/json files on glitch.com but if you want to serve more assets like images & video, 
+// you should use mimetype check packages so you don't have to keep track off all file extentions
 const mimetype = {
   '.html': 'text/html',
   '.css': 'text/css',
