@@ -39,6 +39,7 @@ http.createServer(function (req, res) {
   // Else if file extention is empty, that means user accessed '/aboutme' instead of '/aboutme.html' 
   // so add file extention to the pathname
   if (pathname === '/') { 
+    extention = '.html' 
     pathname = '/index.html'
   } else if (!extention) { 
     extention = '.html' 
@@ -52,8 +53,9 @@ http.createServer(function (req, res) {
   // Let's check if the file exist on the computer
   fs.exists(filepath, function (exists, err) {
     
-    // Oops the file requested does not exist on the computer respond to client with "Not Found"
-    if (!exists) {
+    // Oops the file requested does not exist on the computer (or it is not html/css/js/json file)
+    // Respond to client with "Not Found"
+    if (!exists || !mimetype[extention]) {
       console.log('File does not exist: ' + pathname)
       res.writeHead(404, {'Content-Type': 'text/plain'})
       res.write('404 Not Found')
