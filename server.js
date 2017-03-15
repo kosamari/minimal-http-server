@@ -1,7 +1,6 @@
 // server.js
 // This is a minimal HTTP server written in Node's native http module
 
-
 const http = require('http')
 const url = require('url')
 const path = require('path')
