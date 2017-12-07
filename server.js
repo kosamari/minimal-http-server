@@ -18,7 +18,7 @@ const mimetype = {
 }
 
 // OK, let's make http server
-http.createServer(function (req, res) {
+http.createServer((req, res) => {
   // req : has alot of data about what client (browser) sent to the server
   // res : has lots of methods to respond to the client request
   
@@ -53,7 +53,7 @@ http.createServer(function (req, res) {
   
   // OK, now we know which file user is requesting (pathname) & where the file should live on the computer (filepath)
   // Let's check if the file exist on the computer
-  fs.exists(filepath, function (exists, err) {
+  fs.exists(filepath, (exists, err) => {
     
     // Oops the file requested does not exist on the computer (or it is not html/css/js/json file)
     // Respond to client with "Not Found"
